@@ -4,6 +4,7 @@ import { config, connectToMongo } from "./config/config";
 import authRouter from "./route/auth.route";
 import notificationRouter from "./route/notification.route";
 import filesRouter from "./route/files.route";
+import userRouter from "./route/user.route";
 import cors from "cors";
 import Logger from "./config/logger";
 import session from "express-session";
@@ -21,18 +22,20 @@ connectToMongo()
     Logger.error("Error connecting to MongoDB");
   });
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173", // your React app’s URL
-//     credentials: true, // allow sending cookies
-//   })
-// );
+app.use(
+  cors({
+    origin: config.FRONTEND_URL, // your React app’s URL
+    credentials: true, // allow sending cookies
+  })
+);
 
 app.use("/ping", (_, res) => {
   res.send("pong");
 });
 
 app.use("/api/auth", authRouter);
+
+app.use("/api/user", userRouter);
 
 app.use("/api/notification", notificationRouter);
 

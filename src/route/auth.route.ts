@@ -30,7 +30,7 @@ router.get(
     console.log("Redirecting...");
     
     // Redirect back to React app after login success
-    res.redirect("http://localhost:5173/");
+    res.redirect(process.env.FRONTEND_URL || "http://localhost:5173");
   }
 );
 
