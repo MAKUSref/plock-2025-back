@@ -32,7 +32,7 @@ app.use("/ping", (_, res) => {
   res.send("pong");
 });
 
-app.use("/auth", authRouter);
+app.use("api/auth", authRouter);
 
 app.use("/api/notification", notificationRouter);
 
