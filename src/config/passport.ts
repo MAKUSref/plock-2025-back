@@ -26,6 +26,8 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK_URL || "/auth/google/callback",
     },
     async (accessToken, refreshToken, profile: Profile, done) => {
+      console.log(process.env.GOOGLE_CALLBACK_URL);
+      
       try {
         let user: any = await User.findOne({ googleId: profile.id });
 
